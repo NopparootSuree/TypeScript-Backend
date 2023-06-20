@@ -2,6 +2,7 @@ import express, { urlencoded, json } from 'express'
 import connection from "./db/config";
 import usersRoutes from "./routes/users";
 import productsRoutes from "./routes/products";
+import reviewsRoutes from "./routes/reviews";
 
 const app = express()
 
@@ -11,6 +12,7 @@ app.use(express.json());
 
 app.use("/users", usersRoutes)
 app.use("/products", productsRoutes)
+app.use("/reviews", reviewsRoutes)
 
 app.use((
     err:Error,
