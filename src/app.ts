@@ -1,15 +1,16 @@
 import express, { urlencoded, json } from 'express'
 import connection from "./db/config";
 import usersRoutes from "./routes/users";
+import productsRoutes from "./routes/products";
 
 const app = express()
 
 app.use(express.urlencoded({ extended: false }));
 
-// Middleware เพื่อรองรับการอ่านและแปลงข้อมูลแบบ JSON
 app.use(express.json());
 
 app.use("/users", usersRoutes)
+app.use("/products", productsRoutes)
 
 app.use((
     err:Error,
