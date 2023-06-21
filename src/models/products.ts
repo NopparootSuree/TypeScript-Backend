@@ -34,7 +34,8 @@ export class Products extends Model<Products> {
         type: DataType.DECIMAL(10,2),
         allowNull: false,
         validate: {
-            isDecimal: true
+            isDecimal: true,
+            min: 1,
         }
     })
     price!:number;
