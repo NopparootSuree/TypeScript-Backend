@@ -1,4 +1,4 @@
-import { Table, Model, Column,  DataType, ForeignKey } from "sequelize-typescript";
+import { Table, Model, Column,  DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
 import { Users } from "./users"
 import { Products } from "./products"
 
@@ -19,6 +19,9 @@ export class Reviews extends Model<Reviews> {
     })
     userID!:number;
 
+    @BelongsTo(() => Users)
+    user!: Users;
+
     @ForeignKey(() => Products)
     @Column({
         type: DataType.INTEGER,
@@ -26,11 +29,13 @@ export class Reviews extends Model<Reviews> {
         validate: {
             isInt: true,
             notEmpty: true,
-            notNull: true
+            notNull: true,
         }
     })
     productID!:number;
 
+    @BelongsTo(() => Products)
+    product!: Products;
     
     @Column({
         type: DataType.INTEGER,
@@ -48,4 +53,5 @@ export class Reviews extends Model<Reviews> {
         allowNull: true
     })
     comment!:string;
+
 }
