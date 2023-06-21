@@ -5,7 +5,7 @@ import { Table, Model, Column,  DataType} from "sequelize-typescript";
     tableName: "products",
     indexes: [{ name: 'products_name_index', fields: ['name']}]
 })
-
+ 
 export class Products extends Model<Products> {
     @Column({
         type: DataType.STRING(100),
