@@ -1,4 +1,5 @@
-import { Table, Model, Column,  DataType} from "sequelize-typescript";
+import { Table, Model, Column,  DataType, HasMany} from "sequelize-typescript";
+import { Reviews } from "./reviews";
 
 @Table({
     timestamps: true,
@@ -7,6 +8,9 @@ import { Table, Model, Column,  DataType} from "sequelize-typescript";
 })
 
 export class Users extends Model<Users> {
+    @HasMany(() => Reviews)
+    reviews!: Reviews[];
+
     @Column({
         type: DataType.STRING(100),
         allowNull: false,
