@@ -53,5 +53,4 @@ export class Reviews extends Model<Reviews> {
         allowNull: true
     })
     comment!:string;
-
 }

@@ -46,6 +46,4 @@ export class Users extends Model<Users> {
         }
     })
     email!:string;
-
-
 }
