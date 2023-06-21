@@ -13,6 +13,9 @@ export class Reviews extends Model<Reviews> {
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
+        validate: {
+            isInt: true
+        }
     })
     userID!:number;
 
@@ -20,6 +23,11 @@ export class Reviews extends Model<Reviews> {
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
+        validate: {
+            isInt: true,
+            notEmpty: true,
+            notNull: true
+        }
     })
     productID!:number;
 
@@ -27,12 +35,17 @@ export class Reviews extends Model<Reviews> {
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
+        validate: {
+            isDecimal: true,
+            notEmpty: true,
+            notNull: true
+        }
     })
     rating!:number;
 
     @Column({
         type: DataType.STRING(255),
-        allowNull: false,
+        allowNull: true
     })
     comment!:string;
 }
