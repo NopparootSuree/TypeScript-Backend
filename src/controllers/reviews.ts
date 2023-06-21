@@ -1,12 +1,16 @@
 import { RequestHandler, Request, Response, NextFunction } from "express";
 import { Reviews } from "../models/reviews";
 
-function handleModleError(error: any, res: Response): void {
+const handleModleError = (error: any, res: Response): void => {
+    const errFoeignKeyFields = error.fields[0]
+    
     const errorWithErrors = error as { errors?: any[] };
     if (errorWithErrors.errors && Array.isArray(errorWithErrors.errors)) {
         res.status(400).json({ error: 'Validation failed', details: errorWithErrors.errors[0].message });
+    } else if (error.name === 'SequelizeForeignKeyConstraintError') {
+        res.status(400).json({ error: 'Validation failed', details: `Invalid foreign key at field ${errFoeignKeyFields}` });
     } else {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'Internal server error'});
     }
 }
 

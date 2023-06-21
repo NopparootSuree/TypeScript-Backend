@@ -1,7 +1,7 @@
 import { RequestHandler, Request, Response, NextFunction } from "express";
 import { Users } from "../models/users";
 
-function handleModleError(error: any, res: Response): void {
+const handleModleError = (error: any, res: Response): void => {
     const errorWithErrors = error as { errors?: any[] };
     if (errorWithErrors.errors && Array.isArray(errorWithErrors.errors)) {
         res.status(400).json({ error: 'Validation failed', details: errorWithErrors.errors[0].message });
